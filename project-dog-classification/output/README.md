@@ -59,21 +59,29 @@ import sys
 !{sys.executable} -m pip install tabulate
 ```
 
-    Looking in indexes: http://ftp.daumkakao.com/pypi/simple
-    Requirement already satisfied: tabulate in /home/yongkyung/anaconda3/envs/tf-gpu/lib/python3.6/site-packages (0.8.3)
+    Collecting tabulate
+      Downloading https://files.pythonhosted.org/packages/c2/fd/202954b3f0eb896c53b7b6f07390851b1fd2ca84aa95880d7ae4f434c4ac/tabulate-0.8.3.tar.gz (46kB)
+    [K    100% |████████████████████████████████| 51kB 1.8MB/s ta 0:00:011
+    [?25hBuilding wheels for collected packages: tabulate
+      Running setup.py bdist_wheel for tabulate ... [?25ldone
+    [?25h  Stored in directory: /root/.cache/pip/wheels/2b/67/89/414471314a2d15de625d184d8be6d38a03ae1e983dbda91e84
+    Successfully built tabulate
+    Installing collected packages: tabulate
+    Successfully installed tabulate-0.8.3
+    [33mYou are using pip version 9.0.1, however version 19.0.3 is available.
+    You should consider upgrading via the 'pip install --upgrade pip' command.[0m
 
 
 
 ```python
-import os 
 import numpy as np
 from functools import partial
 from tabulate import tabulate
 from glob import glob
 
 # load filenames for human and dog images
-human_files = np.array(glob("{}/data/lfw/*/*".format(os.getcwd())))
-dog_files = np.array(glob("{}/data/dog_images/*/*/*".format(os.getcwd())))
+human_files = np.array(glob("/data/lfw/*/*"))
+dog_files = np.array(glob("/data/dog_images/*/*/*"))
 
 # print number of images in each dataset
 print('There are %d total human images.' % len(human_files))
@@ -216,8 +224,8 @@ print("{} of human face detected out of 100 samples.".format(human_count))
 print("{} of dog face detected out of 100 samples.".format(dog_count))
 ```
 
-    100 of human face detected out of 100 samples.
-    19 of dog face detected out of 100 samples.
+    98 of human face detected out of 100 samples.
+    17 of dog face detected out of 100 samples.
 
 
 I wrote my own code and implemented some parts from following reference: https://necromuralist.github.io/In-Too-Deep/posts/nano/dog-breed-classifier/dog-app/
@@ -258,8 +266,8 @@ open_cv_false_positives = face_scorer(face_detector)
 
     | Metric                                                 | Value   |
     |--------------------------------------------------------|---------|
-    | First 100 images in `human_files` detected with a face | 100.00% |
-    | First 100 images in `dog_files` detected with a face   | 19.00%  |
+    | First 100 images in `human_files` detected with a face | 98.00%  |
+    | First 100 images in `dog_files` detected with a face   | 17.00%  |
     | F1                                                     | 0.91    |
 
 
@@ -277,15 +285,14 @@ Due to the memory issue, I cleared memory and setup again.
 
 
 ```python
-import os 
 import numpy as np
 from functools import partial
 from tabulate import tabulate
 from glob import glob
 
 # load filenames for human and dog images
-human_files = np.array(glob("{}/data/lfw/*/*".format(os.getcwd())))
-dog_files = np.array(glob("{}/data/dog_images/*/*/*".format(os.getcwd())))
+human_files = np.array(glob("/data/lfw/*/*"))
+dog_files = np.array(glob("/data/dog_images/*/*/*"))
 
 # print number of images in each dataset
 print('There are %d total human images.' % len(human_files))
@@ -511,9 +518,9 @@ inception_false_dogs = dog_scorer(inception_dog_detector)
 
     | Metric                                           | Value   |
     |--------------------------------------------------|---------|
-    | Images in `dog_files_short` with a detected dog  | 100.00% |
+    | Images in `dog_files_short` with a detected dog  | 99.00%  |
     | Images in `human_files_short with a detected dog | 1.00%   |
-    | F1                                               | 1.00    |
+    | F1                                               | 0.99    |
 
 
 ## Implementation using ResNet50
@@ -522,15 +529,14 @@ Due to the memory issue, I cleared memory and setup again.
 
 
 ```python
-import os 
 import numpy as np
 from functools import partial
 from tabulate import tabulate
 from glob import glob
 
 # load filenames for human and dog images
-human_files = np.array(glob("{}/data/lfw/*/*".format(os.getcwd())))
-dog_files = np.array(glob("{}/data/dog_images/*/*/*".format(os.getcwd())))
+human_files = np.array(glob("/data/lfw/*/*"))
+dog_files = np.array(glob("/data/dog_images/*/*/*"))
 
 # print number of images in each dataset
 print('There are %d total human images.' % len(human_files))
@@ -638,9 +644,9 @@ ResNet50_false_dogs = dog_scorer(Resnet_dog_detector)
 
     | Metric                                           | Value   |
     |--------------------------------------------------|---------|
-    | Images in `dog_files_short` with a detected dog  | 97.00%  |
-    | Images in `human_files_short with a detected dog | 1.00%   |
-    | F1                                               | 0.98    |
+    | Images in `dog_files_short` with a detected dog  | 100.00% |
+    | Images in `human_files_short with a detected dog | 0.00%   |
+    | F1                                               | 1.00    |
 
 
 ---
@@ -683,38 +689,32 @@ Due to the memory issue, I cleared memory and setup again.
 # Install somd additional packages to use
 # Install a pip package in the current Jupyter kernel
 import sys
-!{sys.executable} -m pip install --upgrade pip
 !{sys.executable} -m pip install tabulate
 ```
 
-    Looking in indexes: http://ftp.daumkakao.com/pypi/simple
-    Requirement already up-to-date: pip in /home/yongkyung/anaconda3/envs/tf-gpu/lib/python3.6/site-packages (19.0.3)
-    Looking in indexes: http://ftp.daumkakao.com/pypi/simple
-    Requirement already satisfied: tabulate in /home/yongkyung/anaconda3/envs/tf-gpu/lib/python3.6/site-packages (0.8.3)
+    Requirement already satisfied: tabulate in /opt/conda/lib/python3.6/site-packages
+    [33mYou are using pip version 9.0.1, however version 19.0.3 is available.
+    You should consider upgrading via the 'pip install --upgrade pip' command.[0m
 
 
 
 ```python
-import os 
 import numpy as np
 from functools import partial
 from tabulate import tabulate
 from glob import glob
 
 # load filenames for human and dog images
-human_files = np.array(glob("{}/data/lfw/*/*".format(os.getcwd())))
-dog_files = np.array(glob("{}/data/dog_images/*/*/*".format(os.getcwd())))
-test_files = np.array(glob("{}/data/test/*".format(os.getcwd())))
+human_files = np.array(glob("/data/lfw/*/*"))
+dog_files = np.array(glob("/data/dog_images/*/*/*"))
 
 # print number of images in each dataset
 print('There are %d total human images.' % len(human_files))
 print('There are %d total dog images.' % len(dog_files))
-print('There are %d total test images.' % len(test_files))
 ```
 
     There are 13233 total human images.
     There are 8351 total dog images.
-    There are 6 total test images.
 
 
 
@@ -770,14 +770,14 @@ path = os.getcwd()
 print ("The current working directory is %s" % path)  
 ```
 
-    The current working directory is /HDD/yongkyung/project-dog-classification
+    The current working directory is /home/workspace/dog_project
 
 
 
 ```python
 from pathlib import Path
 
-DOG_PATH = Path("{}/data/dog_images".format(os.getcwd()))
+DOG_PATH = Path("/data/dog_images")
 dog_training_path = DOG_PATH.joinpath("train")
 dog_validation_path = DOG_PATH.joinpath("valid")
 dog_testing_path = DOG_PATH.joinpath("test")
@@ -1048,7 +1048,7 @@ class Tee:
 ```python
 MODEL_PATH = Path(os.getcwd())
 scratch_path = MODEL_PATH.joinpath("model_scratch.pt")
-scratch_log = Tee(log_name="scratch_train.log", directory_name=MODEL_PATH)
+scratch_log = Tee(log_name="scratch_train.log")
 ```
 
 
@@ -1062,99 +1062,95 @@ model_scratch = train(EPOCHS, loaders_scratch, model_scratch, optimizer_scratch,
                       criterion_scratch, use_cuda, scratch_path, print_function=print)
 ```
 
-    Training Started: 2019-04-01 06:12:43.343612
-    Epoch: 1 	Training Loss: 4.889615 	Validation Loss: 4.884412	Elapsed: 0:01:17.725540
-    Validation loss decreased (inf --> 4.884412). Saving model ...
-    Epoch: 2 	Training Loss: 4.880484 	Validation Loss: 4.872139	Elapsed: 0:01:17.897870
-    Validation loss decreased (4.884412 --> 4.872139). Saving model ...
-    Epoch: 3 	Training Loss: 4.871774 	Validation Loss: 4.859914	Elapsed: 0:01:18.284258
-    Validation loss decreased (4.872139 --> 4.859914). Saving model ...
-    Epoch: 4 	Training Loss: 4.861817 	Validation Loss: 4.839674	Elapsed: 0:01:19.427560
-    Validation loss decreased (4.859914 --> 4.839674). Saving model ...
-    Epoch: 5 	Training Loss: 4.840475 	Validation Loss: 4.798747	Elapsed: 0:01:18.363935
-    Validation loss decreased (4.839674 --> 4.798747). Saving model ...
-    Epoch: 6 	Training Loss: 4.804058 	Validation Loss: 4.744787	Elapsed: 0:01:18.126371
-    Validation loss decreased (4.798747 --> 4.744787). Saving model ...
-    Epoch: 7 	Training Loss: 4.760304 	Validation Loss: 4.681587	Elapsed: 0:01:18.205116
-    Validation loss decreased (4.744787 --> 4.681587). Saving model ...
-    Epoch: 8 	Training Loss: 4.692835 	Validation Loss: 4.585598	Elapsed: 0:01:17.948668
-    Validation loss decreased (4.681587 --> 4.585598). Saving model ...
-    Epoch: 9 	Training Loss: 4.643410 	Validation Loss: 4.527303	Elapsed: 0:01:18.025245
-    Validation loss decreased (4.585598 --> 4.527303). Saving model ...
-    Epoch: 10 	Training Loss: 4.603510 	Validation Loss: 4.493034	Elapsed: 0:01:18.087214
-    Validation loss decreased (4.527303 --> 4.493034). Saving model ...
-    Epoch: 11 	Training Loss: 4.587076 	Validation Loss: 4.453027	Elapsed: 0:01:18.343681
-    Validation loss decreased (4.493034 --> 4.453027). Saving model ...
-    Epoch: 12 	Training Loss: 4.566914 	Validation Loss: 4.448902	Elapsed: 0:01:18.536667
-    Validation loss decreased (4.453027 --> 4.448902). Saving model ...
-    Epoch: 13 	Training Loss: 4.549305 	Validation Loss: 4.422849	Elapsed: 0:01:18.221716
-    Validation loss decreased (4.448902 --> 4.422849). Saving model ...
-    Epoch: 14 	Training Loss: 4.539425 	Validation Loss: 4.403691	Elapsed: 0:01:18.198374
-    Validation loss decreased (4.422849 --> 4.403691). Saving model ...
-    Epoch: 15 	Training Loss: 4.515719 	Validation Loss: 4.394668	Elapsed: 0:01:18.223590
-    Validation loss decreased (4.403691 --> 4.394668). Saving model ...
-    Epoch: 16 	Training Loss: 4.506286 	Validation Loss: 4.376031	Elapsed: 0:01:18.816461
-    Validation loss decreased (4.394668 --> 4.376031). Saving model ...
-    Epoch: 17 	Training Loss: 4.481467 	Validation Loss: 4.353177	Elapsed: 0:01:18.372460
-    Validation loss decreased (4.376031 --> 4.353177). Saving model ...
-    Epoch: 18 	Training Loss: 4.462746 	Validation Loss: 4.340807	Elapsed: 0:01:18.089590
-    Validation loss decreased (4.353177 --> 4.340807). Saving model ...
-    Epoch: 19 	Training Loss: 4.449226 	Validation Loss: 4.331857	Elapsed: 0:01:17.966111
-    Validation loss decreased (4.340807 --> 4.331857). Saving model ...
-    Epoch: 20 	Training Loss: 4.422835 	Validation Loss: 4.318031	Elapsed: 0:01:18.196140
-    Validation loss decreased (4.331857 --> 4.318031). Saving model ...
-    Epoch: 21 	Training Loss: 4.400360 	Validation Loss: 4.287185	Elapsed: 0:01:18.158231
-    Validation loss decreased (4.318031 --> 4.287185). Saving model ...
-    Epoch: 22 	Training Loss: 4.404363 	Validation Loss: 4.302939	Elapsed: 0:01:18.289417
-    Epoch: 23 	Training Loss: 4.390066 	Validation Loss: 4.306809	Elapsed: 0:01:18.319513
-    Epoch: 24 	Training Loss: 4.360640 	Validation Loss: 4.246852	Elapsed: 0:01:18.633063
-    Validation loss decreased (4.287185 --> 4.246852). Saving model ...
-    Epoch: 25 	Training Loss: 4.343496 	Validation Loss: 4.231683	Elapsed: 0:01:18.293307
-    Validation loss decreased (4.246852 --> 4.231683). Saving model ...
-    Epoch: 26 	Training Loss: 4.330849 	Validation Loss: 4.195403	Elapsed: 0:01:18.347958
-    Validation loss decreased (4.231683 --> 4.195403). Saving model ...
-    Epoch: 27 	Training Loss: 4.323205 	Validation Loss: 4.197792	Elapsed: 0:01:18.231619
-    Epoch: 28 	Training Loss: 4.303984 	Validation Loss: 4.192633	Elapsed: 0:01:18.229840
-    Validation loss decreased (4.195403 --> 4.192633). Saving model ...
-    Epoch: 29 	Training Loss: 4.293006 	Validation Loss: 4.203251	Elapsed: 0:01:18.284342
-    Epoch: 30 	Training Loss: 4.272057 	Validation Loss: 4.172427	Elapsed: 0:01:18.374759
-    Validation loss decreased (4.192633 --> 4.172427). Saving model ...
-    Epoch: 31 	Training Loss: 4.264718 	Validation Loss: 4.152710	Elapsed: 0:01:18.376076
-    Validation loss decreased (4.172427 --> 4.152710). Saving model ...
-    Epoch: 32 	Training Loss: 4.225541 	Validation Loss: 4.116599	Elapsed: 0:01:18.205621
-    Validation loss decreased (4.152710 --> 4.116599). Saving model ...
-    Epoch: 33 	Training Loss: 4.226068 	Validation Loss: 4.111504	Elapsed: 0:01:17.833533
-    Validation loss decreased (4.116599 --> 4.111504). Saving model ...
-    Epoch: 34 	Training Loss: 4.204419 	Validation Loss: 4.085888	Elapsed: 0:01:18.281698
-    Validation loss decreased (4.111504 --> 4.085888). Saving model ...
-    Epoch: 35 	Training Loss: 4.196247 	Validation Loss: 4.112542	Elapsed: 0:01:18.063936
-    Epoch: 36 	Training Loss: 4.161797 	Validation Loss: 4.077919	Elapsed: 0:01:18.140974
-    Validation loss decreased (4.085888 --> 4.077919). Saving model ...
-    Epoch: 37 	Training Loss: 4.151124 	Validation Loss: 4.022473	Elapsed: 0:01:18.088187
-    Validation loss decreased (4.077919 --> 4.022473). Saving model ...
-    Epoch: 38 	Training Loss: 4.128134 	Validation Loss: 4.021154	Elapsed: 0:01:18.025853
-    Validation loss decreased (4.022473 --> 4.021154). Saving model ...
-    Epoch: 39 	Training Loss: 4.122823 	Validation Loss: 4.026179	Elapsed: 0:01:17.961774
-    Epoch: 40 	Training Loss: 4.076054 	Validation Loss: 3.990312	Elapsed: 0:01:18.360368
-    Validation loss decreased (4.021154 --> 3.990312). Saving model ...
-    Epoch: 41 	Training Loss: 4.045578 	Validation Loss: 3.973742	Elapsed: 0:01:17.902869
-    Validation loss decreased (3.990312 --> 3.973742). Saving model ...
-    Epoch: 42 	Training Loss: 4.055626 	Validation Loss: 3.924663	Elapsed: 0:01:17.807776
-    Validation loss decreased (3.973742 --> 3.924663). Saving model ...
-    Epoch: 43 	Training Loss: 4.039711 	Validation Loss: 3.956115	Elapsed: 0:01:17.987319
-    Epoch: 44 	Training Loss: 4.032498 	Validation Loss: 3.943155	Elapsed: 0:01:18.036490
-    Epoch: 45 	Training Loss: 3.987047 	Validation Loss: 3.901951	Elapsed: 0:01:18.200608
-    Validation loss decreased (3.924663 --> 3.901951). Saving model ...
-    Epoch: 46 	Training Loss: 3.969863 	Validation Loss: 3.889808	Elapsed: 0:01:18.181325
-    Validation loss decreased (3.901951 --> 3.889808). Saving model ...
-    Epoch: 47 	Training Loss: 3.965488 	Validation Loss: 3.906688	Elapsed: 0:01:18.375936
-    Epoch: 48 	Training Loss: 3.939551 	Validation Loss: 3.840016	Elapsed: 0:01:18.342004
-    Validation loss decreased (3.889808 --> 3.840016). Saving model ...
-    Epoch: 49 	Training Loss: 3.937456 	Validation Loss: 3.817972	Elapsed: 0:01:17.949478
-    Validation loss decreased (3.840016 --> 3.817972). Saving model ...
-    Epoch: 50 	Training Loss: 3.917919 	Validation Loss: 3.841882	Elapsed: 0:01:18.174544
-    Training Ended: 2019-04-01 07:17:54.632804
-    Total Training Time: 1:05:11.289192
+    Training Started: 2019-03-29 12:17:10.024883
+    Epoch: 1 	Training Loss: 4.889926 	Validation Loss: 4.886722	Elapsed: 0:02:24.381522
+    Validation loss decreased (inf --> 4.886722). Saving model ...
+    Epoch: 2 	Training Loss: 4.884201 	Validation Loss: 4.880894	Elapsed: 0:02:09.483224
+    Validation loss decreased (4.886722 --> 4.880894). Saving model ...
+    Epoch: 3 	Training Loss: 4.876861 	Validation Loss: 4.873463	Elapsed: 0:02:09.916082
+    Validation loss decreased (4.880894 --> 4.873463). Saving model ...
+    Epoch: 4 	Training Loss: 4.870756 	Validation Loss: 4.863739	Elapsed: 0:02:09.713751
+    Validation loss decreased (4.873463 --> 4.863739). Saving model ...
+    Epoch: 5 	Training Loss: 4.859292 	Validation Loss: 4.845694	Elapsed: 0:02:09.631352
+    Validation loss decreased (4.863739 --> 4.845694). Saving model ...
+    Epoch: 6 	Training Loss: 4.835240 	Validation Loss: 4.805572	Elapsed: 0:02:10.250180
+    Validation loss decreased (4.845694 --> 4.805572). Saving model ...
+    Epoch: 7 	Training Loss: 4.793548 	Validation Loss: 4.730109	Elapsed: 0:02:09.957685
+    Validation loss decreased (4.805572 --> 4.730109). Saving model ...
+    Epoch: 8 	Training Loss: 4.751574 	Validation Loss: 4.680202	Elapsed: 0:02:09.677702
+    Validation loss decreased (4.730109 --> 4.680202). Saving model ...
+    Epoch: 9 	Training Loss: 4.693241 	Validation Loss: 4.600686	Elapsed: 0:02:10.761121
+    Validation loss decreased (4.680202 --> 4.600686). Saving model ...
+    Epoch: 10 	Training Loss: 4.642403 	Validation Loss: 4.535213	Elapsed: 0:02:08.584905
+    Validation loss decreased (4.600686 --> 4.535213). Saving model ...
+    Epoch: 11 	Training Loss: 4.612073 	Validation Loss: 4.506331	Elapsed: 0:02:10.838138
+    Validation loss decreased (4.535213 --> 4.506331). Saving model ...
+    Epoch: 12 	Training Loss: 4.590411 	Validation Loss: 4.492234	Elapsed: 0:02:08.088850
+    Validation loss decreased (4.506331 --> 4.492234). Saving model ...
+    Epoch: 13 	Training Loss: 4.571492 	Validation Loss: 4.438873	Elapsed: 0:02:10.285106
+    Validation loss decreased (4.492234 --> 4.438873). Saving model ...
+    Epoch: 14 	Training Loss: 4.555246 	Validation Loss: 4.460694	Elapsed: 0:02:09.703690
+    Epoch: 15 	Training Loss: 4.533651 	Validation Loss: 4.412253	Elapsed: 0:02:10.094783
+    Validation loss decreased (4.438873 --> 4.412253). Saving model ...
+    Epoch: 16 	Training Loss: 4.509091 	Validation Loss: 4.385929	Elapsed: 0:02:09.948766
+    Validation loss decreased (4.412253 --> 4.385929). Saving model ...
+    Epoch: 17 	Training Loss: 4.490388 	Validation Loss: 4.389250	Elapsed: 0:02:09.681087
+    Epoch: 18 	Training Loss: 4.480905 	Validation Loss: 4.347657	Elapsed: 0:02:08.445227
+    Validation loss decreased (4.385929 --> 4.347657). Saving model ...
+    Epoch: 19 	Training Loss: 4.460553 	Validation Loss: 4.358980	Elapsed: 0:02:10.537716
+    Epoch: 20 	Training Loss: 4.442286 	Validation Loss: 4.357460	Elapsed: 0:02:10.305192
+    Epoch: 21 	Training Loss: 4.428612 	Validation Loss: 4.299959	Elapsed: 0:02:10.239094
+    Validation loss decreased (4.347657 --> 4.299959). Saving model ...
+    Epoch: 22 	Training Loss: 4.407013 	Validation Loss: 4.290545	Elapsed: 0:02:10.392125
+    Validation loss decreased (4.299959 --> 4.290545). Saving model ...
+    Epoch: 23 	Training Loss: 4.385801 	Validation Loss: 4.258247	Elapsed: 0:02:10.254433
+    Validation loss decreased (4.290545 --> 4.258247). Saving model ...
+    Epoch: 24 	Training Loss: 4.383373 	Validation Loss: 4.242888	Elapsed: 0:02:09.775723
+    Validation loss decreased (4.258247 --> 4.242888). Saving model ...
+    Epoch: 25 	Training Loss: 4.367550 	Validation Loss: 4.242460	Elapsed: 0:02:09.457200
+    Validation loss decreased (4.242888 --> 4.242460). Saving model ...
+    Epoch: 26 	Training Loss: 4.337317 	Validation Loss: 4.205194	Elapsed: 0:02:10.109963
+    Validation loss decreased (4.242460 --> 4.205194). Saving model ...
+    Epoch: 27 	Training Loss: 4.321818 	Validation Loss: 4.211928	Elapsed: 0:02:09.723808
+    Epoch: 28 	Training Loss: 4.303714 	Validation Loss: 4.193796	Elapsed: 0:02:08.145303
+    Validation loss decreased (4.205194 --> 4.193796). Saving model ...
+    Epoch: 29 	Training Loss: 4.293622 	Validation Loss: 4.161465	Elapsed: 0:02:10.404615
+    Validation loss decreased (4.193796 --> 4.161465). Saving model ...
+    Epoch: 30 	Training Loss: 4.272157 	Validation Loss: 4.144076	Elapsed: 0:02:09.805548
+    Validation loss decreased (4.161465 --> 4.144076). Saving model ...
+    Epoch: 31 	Training Loss: 4.247467 	Validation Loss: 4.138519	Elapsed: 0:02:09.446015
+    Validation loss decreased (4.144076 --> 4.138519). Saving model ...
+    Epoch: 32 	Training Loss: 4.230507 	Validation Loss: 4.130664	Elapsed: 0:02:08.879987
+    Validation loss decreased (4.138519 --> 4.130664). Saving model ...
+    Epoch: 33 	Training Loss: 4.207421 	Validation Loss: 4.070296	Elapsed: 0:02:09.544156
+    Validation loss decreased (4.130664 --> 4.070296). Saving model ...
+    Epoch: 34 	Training Loss: 4.182953 	Validation Loss: 4.139458	Elapsed: 0:02:09.358009
+    Epoch: 35 	Training Loss: 4.176981 	Validation Loss: 4.081882	Elapsed: 0:02:10.322881
+    Epoch: 36 	Training Loss: 4.159276 	Validation Loss: 4.048941	Elapsed: 0:02:10.575485
+    Validation loss decreased (4.070296 --> 4.048941). Saving model ...
+    Epoch: 37 	Training Loss: 4.134710 	Validation Loss: 4.027451	Elapsed: 0:02:09.602650
+    Validation loss decreased (4.048941 --> 4.027451). Saving model ...
+    Epoch: 38 	Training Loss: 4.118992 	Validation Loss: 4.002538	Elapsed: 0:02:09.348780
+    Validation loss decreased (4.027451 --> 4.002538). Saving model ...
+    Epoch: 39 	Training Loss: 4.088971 	Validation Loss: 4.008237	Elapsed: 0:02:10.255058
+    Epoch: 40 	Training Loss: 4.069693 	Validation Loss: 3.958286	Elapsed: 0:02:09.952085
+    Validation loss decreased (4.002538 --> 3.958286). Saving model ...
+    Epoch: 41 	Training Loss: 4.050573 	Validation Loss: 3.960766	Elapsed: 0:02:09.466835
+    Epoch: 42 	Training Loss: 4.018043 	Validation Loss: 3.935760	Elapsed: 0:02:09.484631
+    Validation loss decreased (3.958286 --> 3.935760). Saving model ...
+    Epoch: 43 	Training Loss: 4.016034 	Validation Loss: 3.998382	Elapsed: 0:02:09.650819
+    Epoch: 44 	Training Loss: 4.002343 	Validation Loss: 3.933187	Elapsed: 0:02:10.142905
+    Validation loss decreased (3.935760 --> 3.933187). Saving model ...
+    Epoch: 45 	Training Loss: 3.966910 	Validation Loss: 3.997937	Elapsed: 0:02:10.139763
+    Epoch: 46 	Training Loss: 3.945585 	Validation Loss: 3.845931	Elapsed: 0:02:11.185416
+    Validation loss decreased (3.933187 --> 3.845931). Saving model ...
+    Epoch: 47 	Training Loss: 3.942519 	Validation Loss: 3.858307	Elapsed: 0:02:07.482536
+    Epoch: 48 	Training Loss: 3.903238 	Validation Loss: 3.857883	Elapsed: 0:02:10.072043
+    Epoch: 49 	Training Loss: 3.891728 	Validation Loss: 3.788814	Elapsed: 0:02:10.038542
+    Validation loss decreased (3.845931 --> 3.788814). Saving model ...
+    Epoch: 50 	Training Loss: 3.888336 	Validation Loss: 3.819596	Elapsed: 0:02:10.230773
+    Training Ended: 2019-03-29 14:05:35.172370
+    Total Training Time: 1:48:25.147487
 
 
 ### (IMPLEMENTATION) Test the Model
@@ -1200,7 +1196,7 @@ def test(loaders, model, criterion, use_cuda, print_function=print):
 
 
 ```python
-scratch_test_log = Tee("scratch_test.log", directory_name=MODEL_PATH)
+scratch_test_log = Tee("scratch_test.log")
 ```
 
 
@@ -1209,10 +1205,10 @@ scratch_test_log = Tee("scratch_test.log", directory_name=MODEL_PATH)
 test(loaders_scratch, model_scratch, criterion_scratch, use_cuda, print_function=scratch_test_log)
 ```
 
-    Test Loss: 3.794694
+    Test Loss: 3.829041
     
     
-    Test Accuracy: 10% (86/836)
+    Test Accuracy: 12% (104/836)
 
 
 ---
@@ -1260,6 +1256,10 @@ use_cuda = torch.cuda.is_available()
 if use_cuda:
     model_transfer = model_transfer.cuda()
 ```
+
+    Downloading: "https://download.pytorch.org/models/vgg16-397923af.pth" to /root/.torch/models/vgg16-397923af.pth
+    100%|██████████| 553433881/553433881 [00:04<00:00, 116071964.49it/s]
+
 
 
 ```python
@@ -1335,10 +1335,8 @@ model_transfer
 
 __Question 5:__ Outline the steps you took to get to your final CNN architecture and your reasoning at each step.  Describe why you think the architecture is suitable for the current problem.
 
-__Answer:__  The VGG network is characterized by its simplicity, using only 3×3 convolutional layers stacked on top of each other in increasing depth. Reducing volume size is handled by max pooling. Two fully-connected layers, each with 4,096 nodes are then followed by a softmax classifier. 
+__Answer:__  I used the classification using VGG16, which has origninally 1000 outputs. I changed final layer to connect 133 outputs. 
 
-I used the classification using VGG16, which has originally 1000 outputs. I changed final layer to connect 133 outputs. VGG16 is one of the well-perform classifier and pretrained model. Additional to that, this model can be implemented in my scratch code `train` and `test`. 
-VGG16 is well structured and I checked the final layer is consist of input 4096 and output 1000. I changed the final output to 133, because our target class number (BREEDS) is 133. 
 
 ### (IMPLEMENTATION) Specify Loss Function and Optimizer
 
@@ -1364,7 +1362,7 @@ transfer_model_path = MODEL_PATH.joinpath("model_transfer.pt")
 
 
 ```python
-transfer_log = Tee(log_name="transfer_train.log", directory_name=MODEL_PATH)
+transfer_log = Tee(log_name="transfer_train.log")
 ```
 
 
@@ -1386,25 +1384,26 @@ model_transfer = train(EPOCHS,
                        print_function=transfer_log)
 ```
 
-    Training Started: 2019-04-01 07:18:04.046957
-    Epoch: 1 	Training Loss: 2.577649 	Validation Loss: 1.049485	Elapsed: 0:02:04.403414
-    Validation loss decreased (inf --> 1.049485). Saving model ...
-    Epoch: 2 	Training Loss: 1.499113 	Validation Loss: 0.818027	Elapsed: 0:02:04.720910
-    Validation loss decreased (1.049485 --> 0.818027). Saving model ...
-    Epoch: 3 	Training Loss: 1.291849 	Validation Loss: 0.703318	Elapsed: 0:02:04.885486
-    Validation loss decreased (0.818027 --> 0.703318). Saving model ...
-    Epoch: 4 	Training Loss: 1.224490 	Validation Loss: 0.698721	Elapsed: 0:02:05.064488
-    Validation loss decreased (0.703318 --> 0.698721). Saving model ...
-    Epoch: 5 	Training Loss: 1.123143 	Validation Loss: 0.803936	Elapsed: 0:02:04.785896
-    Epoch: 6 	Training Loss: 1.061622 	Validation Loss: 0.737522	Elapsed: 0:02:04.988246
-    Epoch: 7 	Training Loss: 1.050306 	Validation Loss: 0.759945	Elapsed: 0:02:05.889458
-    Epoch: 8 	Training Loss: 0.992775 	Validation Loss: 0.646927	Elapsed: 0:02:05.420918
-    Validation loss decreased (0.698721 --> 0.646927). Saving model ...
-    Epoch: 9 	Training Loss: 0.968703 	Validation Loss: 0.658782	Elapsed: 0:02:05.411352
-    Epoch: 10 	Training Loss: 0.916952 	Validation Loss: 0.643122	Elapsed: 0:02:05.291175
-    Validation loss decreased (0.646927 --> 0.643122). Saving model ...
-    Training Ended: 2019-04-01 07:39:08.947181
-    Total Training Time: 0:21:04.900224
+    Training Started: 2019-03-29 14:05:57.513663
+    Epoch: 1 	Training Loss: 2.659910 	Validation Loss: 0.978879	Elapsed: 0:07:27.466139
+    Validation loss decreased (inf --> 0.978879). Saving model ...
+    Epoch: 2 	Training Loss: 1.487078 	Validation Loss: 0.884303	Elapsed: 0:07:27.558893
+    Validation loss decreased (0.978879 --> 0.884303). Saving model ...
+    Epoch: 3 	Training Loss: 1.298901 	Validation Loss: 0.767478	Elapsed: 0:07:27.124205
+    Validation loss decreased (0.884303 --> 0.767478). Saving model ...
+    Epoch: 4 	Training Loss: 1.223930 	Validation Loss: 0.747721	Elapsed: 0:07:33.110524
+    Validation loss decreased (0.767478 --> 0.747721). Saving model ...
+    Epoch: 5 	Training Loss: 1.108819 	Validation Loss: 0.682093	Elapsed: 0:07:27.486718
+    Validation loss decreased (0.747721 --> 0.682093). Saving model ...
+    Epoch: 6 	Training Loss: 1.037946 	Validation Loss: 0.699985	Elapsed: 0:07:27.489589
+    Epoch: 7 	Training Loss: 0.996577 	Validation Loss: 0.649825	Elapsed: 0:07:27.345043
+    Validation loss decreased (0.682093 --> 0.649825). Saving model ...
+    Epoch: 8 	Training Loss: 0.991333 	Validation Loss: 0.686532	Elapsed: 0:07:27.110731
+    Epoch: 9 	Training Loss: 0.906859 	Validation Loss: 0.633212	Elapsed: 0:07:27.458193
+    Validation loss decreased (0.649825 --> 0.633212). Saving model ...
+    Epoch: 10 	Training Loss: 0.888602 	Validation Loss: 0.650513	Elapsed: 0:07:27.608578
+    Training Ended: 2019-03-29 15:20:43.425354
+    Total Training Time: 1:14:45.911691
 
 
 ### (IMPLEMENTATION) Test the Model
@@ -1413,18 +1412,13 @@ Try out your model on the test dataset of dog images. Use the code cell below to
 
 
 ```python
-transfer_test_log = Tee(log_name="transfer_test.log", directory_name=MODEL_PATH)
+test(loaders_transfer, model_transfer, criterion_transfer, use_cuda)
 ```
 
-
-```python
-test(loaders_transfer, model_transfer, criterion_transfer, use_cuda, print_function=transfer_test_log)
-```
-
-    Test Loss: 0.732594
+    Test Loss: 0.730682
     
     
-    Test Accuracy: 78% (654/836)
+    Test Accuracy: 80% (676/836)
 
 
 ### (IMPLEMENTATION) Predict Dog Breed with the Model
@@ -1460,6 +1454,35 @@ def predict_breed_transfer(image_path):
     return class_names[output.data.cpu().numpy().argmax()]
 ```
 
+
+```python
+for img in dog_files[1000:1010]:
+    print(img)
+    print(predict_breed_transfer(img))
+```
+
+    /data/dog_images/train/102.Manchester_terrier/Manchester_terrier_06779.jpg
+    Manchester terrier
+    /data/dog_images/train/102.Manchester_terrier/Manchester_terrier_06794.jpg
+    Manchester terrier
+    /data/dog_images/train/102.Manchester_terrier/Manchester_terrier_06783.jpg
+    Manchester terrier
+    /data/dog_images/train/102.Manchester_terrier/Manchester_terrier_06801.jpg
+    Manchester terrier
+    /data/dog_images/train/102.Manchester_terrier/Manchester_terrier_06804.jpg
+    German pinscher
+    /data/dog_images/train/102.Manchester_terrier/Manchester_terrier_06787.jpg
+    Manchester terrier
+    /data/dog_images/train/102.Manchester_terrier/Manchester_terrier_06782.jpg
+    Manchester terrier
+    /data/dog_images/train/034.Boxer/Boxer_02418.jpg
+    Boxer
+    /data/dog_images/train/034.Boxer/Boxer_02391.jpg
+    Boxer
+    /data/dog_images/train/034.Boxer/Boxer_02405.jpg
+    Boxer
+
+
 ---
 <a id='step5'></a>
 ## Step 5: Write your Algorithm
@@ -1480,26 +1503,25 @@ Some sample output for our algorithm is provided below, but feel free to design 
 
 
 ```python
-import os 
 import numpy as np
 from functools import partial
 from tabulate import tabulate
 from glob import glob
 
+import matplotlib.pyplot as plt                        
+%matplotlib inline    
+
 # load filenames for human and dog images
-human_files = np.array(glob("{}/data/lfw/*/*".format(os.getcwd())))
-dog_files = np.array(glob("{}/data/dog_images/*/*/*".format(os.getcwd())))
-test_files = np.array(glob("{}/data/test/*".format(os.getcwd())))
+human_files = np.array(glob("/data/lfw/*/*"))
+dog_files = np.array(glob("/data/dog_images/*/*/*"))
 
 # print number of images in each dataset
 print('There are %d total human images.' % len(human_files))
 print('There are %d total dog images.' % len(dog_files))
-print('There are %d total test images.' % len(test_files))
 ```
 
     There are 13233 total human images.
     There are 8351 total dog images.
-    There are 6 total test images.
 
 
 
@@ -1690,7 +1712,7 @@ __Answer:__ (Three possible points for improvement)
 ## Feel free to use as many code cells as needed.
 
 ## suggested code, below
-for file in np.hstack((human_files[:3], dog_files[:3])):
+for file in np.hstack((human_files[:5], dog_files[:5])):
     run_app(file)
 ```
 
@@ -1719,33 +1741,17 @@ for file in np.hstack((human_files[:3], dog_files[:3])):
 
 
 
-```python
-test_files = sorted(test_files)
-
-for file in np.hstack((test_files)):
-    run_app(file)
-```
-
-
-![png](output_127_0.png)
+![png](output_126_6.png)
 
 
 
-![png](output_127_1.png)
+![png](output_126_7.png)
 
 
 
-![png](output_127_2.png)
+![png](output_126_8.png)
 
 
 
-![png](output_127_3.png)
-
-
-
-![png](output_127_4.png)
-
-
-
-![png](output_127_5.png)
+![png](output_126_9.png)
 
