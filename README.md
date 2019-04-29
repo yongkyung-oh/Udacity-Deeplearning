@@ -11,3 +11,8 @@ In this notebook, you will make the first steps towards developing an algorithm 
 
 https://github.com/yongkyung-oh/Udacity_Deeplearning/tree/master/project-dog-classification
 
+## Project 3. TV Script Generation
+In this project, you'll generate your own Seinfeld TV scripts using RNNs. You'll be using part of the Seinfeld dataset of scripts from 9 seasons. The Neural Network you'll build will generate a new ,"fake" TV script, based on patterns it recognizes in this training data.
+
+https://github.com/yongkyung-oh/Udacity_Deeplearning/tree/master/project-tv-script-generation
+
